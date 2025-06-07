@@ -226,7 +226,7 @@
             android:textSize="30sp" />
 
         <Button
-            android:id="@+id/erase_operator_btn"
+            android:id="@+id/delete_one_btn"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginEnd="6dp"
