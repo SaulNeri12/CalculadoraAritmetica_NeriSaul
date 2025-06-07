@@ -1,5 +1,4 @@
 package neri.saul.calculadoraritmetica_nerisaul
-
 class Calculadora {
     var resultado: Double = 0.0
 
@@ -43,7 +42,7 @@ class Calculadora {
         return tokens
     }
 
-    public fun evaluar(expresion: String): Double {
+    fun evaluar(expresion: String): Double {
 
         // convertir a una lista mutable
         val lista = tokenizar(expresion).toMutableList()

@@ -150,40 +150,55 @@
         tools:ignore="MissingConstraints">
 
         <Button
+            android:id="@+id/division_op_btn"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginBottom="6dp"
             android:background="@drawable/rounded_button"
-            android:text="3"
+            android:text="/"
             android:textColor="@color/black"
             android:textSize="30sp" />
 
         <Button
+            android:id="@+id/multiplication_op_btn"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginBottom="6dp"
             android:background="@drawable/rounded_button"
-            android:text="3"
+            android:text="X"
             android:textColor="@color/black"
             android:textSize="30sp" />
 
         <Button
+            android:id="@+id/minus_op_btn"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginBottom="6dp"
             android:background="@drawable/rounded_button"
-            android:text="3"
+            android:text="-"
             android:textColor="@color/black"
             android:textSize="30sp" />
 
         <Button
+            android:id="@+id/plus_op_btn"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginBottom="6dp"
             android:background="@drawable/rounded_button"
-            android:text="3"
+            android:text="+"
             android:textColor="@color/black"
             android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/get_result_op_btn"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/equal_rounded_button"
+            android:text="="
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -201,14 +216,26 @@
         tools:layout_editor_absoluteX="16dp">
 
         <Button
+            android:id="@+id/clear_display_btn"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginEnd="6dp"
             android:background="@drawable/rounded_button"
             android:textColor="@color/black"
-            android:text="3"
+            android:text="C"
             android:textSize="30sp" />
 
+        <Button
+            android:id="@+id/erase_operator_btn"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/rounded_button"
+            android:textColor="@color/black"
+            android:text="DEL"
+            android:textSize="30sp" />
+
+        <!--
         <Button
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -216,16 +243,7 @@
             android:background="@drawable/rounded_button"
             android:textColor="@color/black"
             android:text="3"
-            android:textSize="30sp" />
-
-        <Button
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginEnd="6dp"
-            android:background="@drawable/rounded_button"
-            android:textColor="@color/black"
-            android:text="3"
-            android:textSize="30sp" />
+            android:textSize="30sp" />-->
 
     </LinearLayout>
 
@@ -245,6 +263,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:ignore="MissingConstraints">
 
+        <TextView
+            android:id="@+id/displayTextContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="24sp"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:text="" />
     </LinearLayout>
 
     <!--
