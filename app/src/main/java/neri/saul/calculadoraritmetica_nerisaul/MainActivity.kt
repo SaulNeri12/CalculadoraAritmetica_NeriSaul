@@ -1,5 +1,6 @@
 package neri.saul.calculadoraritmetica_nerisaul
 
+import android.icu.util.Currency
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -148,7 +149,68 @@ class MainActivity : AppCompatActivity() {
             displayTextContent.setText(sb9.toString())
         }
 
+        // listeners de operaciones aritmeticas
+        btnPlusOperation.setOnClickListener {
+            val sb: StringBuilder = StringBuilder()
+            val currentDisplayText: String = displayTextContent.text.toString()
 
+            sb.append(currentDisplayText)
+            sb.append("+")
 
+            displayTextContent.setText(sb.toString())
+        }
+
+        btnMinusOperation.setOnClickListener {
+            val sb: StringBuilder = StringBuilder()
+            val currentDisplayText: String = displayTextContent.text.toString()
+
+            sb.append(currentDisplayText)
+            sb.append("-")
+
+            displayTextContent.setText(sb.toString())
+        }
+
+        btnMultiplicationOperation.setOnClickListener {
+            val sb: StringBuilder = StringBuilder()
+            val currentDisplayText: String = displayTextContent.text.toString()
+
+            sb.append(currentDisplayText)
+            sb.append("*")
+
+            displayTextContent.setText(sb.toString())
+        }
+
+        btnDivisionOperation.setOnClickListener {
+            val sb: StringBuilder = StringBuilder()
+            val currentDisplayText: String = displayTextContent.text.toString()
+
+            sb.append(currentDisplayText)
+            sb.append("/")
+
+            displayTextContent.setText(sb.toString())
+        }
+
+        // listener de los botones de utilidades
+        btnDeleteOne.setOnClickListener {
+            val currentDisplayText: String = displayTextContent.text.toString()
+
+            if (currentDisplayText.length == 0) {
+                val newDisplayContent: String = currentDisplayText.dropLast(1)
+                displayTextContent.setText(newDisplayContent)
+            }
+        }
+
+        btnClearDisplay.setOnClickListener {
+            displayTextContent.setText("")
+        }
+
+        btnGetResult.setOnClickListener {
+            try {
+                val result: Double = this.calculadora.evaluar(displayTextContent.text.toString())
+                displayTextContent.setText(result.toString())
+            } catch (ex: IndexOutOfBoundsException) {
+                displayTextContent.setText("NaN")
+            }
+        }
     }
 }
