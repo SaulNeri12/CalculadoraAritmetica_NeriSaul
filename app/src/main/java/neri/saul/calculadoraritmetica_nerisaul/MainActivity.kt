@@ -1,5 +1,6 @@
 package neri.saul.calculadoraritmetica_nerisaul
 
+import android.annotation.SuppressLint
 import android.icu.util.Currency
 import android.os.Bundle
 import android.widget.Button
@@ -13,6 +14,9 @@ class MainActivity : AppCompatActivity() {
 
     private val calculadora: Calculadora = Calculadora()
 
+    private var displayReference: TextView? = null
+
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         val btn7: Button = this.findViewById(R.id.btnNumber7)
         val btn8: Button = this.findViewById(R.id.btnNumber8)
         val btn9: Button = this.findViewById(R.id.btnNumber9)
+        val btnPoint: Button = this.findViewById(R.id.btnPoint)
 
         // botones para operaciones aritmeticas
         val btnPlusOperation: Button = this.findViewById(R.id.plus_op_btn)
@@ -46,10 +51,13 @@ class MainActivity : AppCompatActivity() {
         val btnClearDisplay: Button = this.findViewById(R.id.clear_display_btn)
         val btnDeleteOne: Button = this.findViewById(R.id.delete_one_btn)
 
-        // Pantalla de la calculadora
         val displayTextContent: TextView = this.findViewById(R.id.displayTextContent)
+        this.displayReference = displayTextContent
 
         btn0.setOnClickListener {
+
+            
+
             val sb: StringBuilder = StringBuilder()
             val currentDisplayText: String = displayTextContent.text.toString()
 
@@ -194,7 +202,7 @@ class MainActivity : AppCompatActivity() {
         btnDeleteOne.setOnClickListener {
             val currentDisplayText: String = displayTextContent.text.toString()
 
-            if (currentDisplayText.length == 0) {
+            if (currentDisplayText.length != 0) {
                 val newDisplayContent: String = currentDisplayText.dropLast(1)
                 displayTextContent.setText(newDisplayContent)
             }
@@ -209,7 +217,29 @@ class MainActivity : AppCompatActivity() {
                 val result: Double = this.calculadora.evaluar(displayTextContent.text.toString())
                 displayTextContent.setText(result.toString())
             } catch (ex: IndexOutOfBoundsException) {
-                displayTextContent.setText("NaN")
+                displayTextContent.setText(R.string.nan_result)
+            } catch (ex: NumberFormatException) {
+                displayTextContent.setText(R.string.syntax_error)
+            }
+        }
+
+        btnPoint.setOnClickListener {
+            val sb: StringBuilder = StringBuilder()
+            val currentDisplayText: String = displayTextContent.text.toString()
+
+            sb.append(currentDisplayText)
+            sb.append(".")
+
+            displayTextContent.setText(sb.toString())
+        }
+
+    }
+
+    fun preventCrashBySyntaxError() {
+        if (this.displayReference != null) {
+            val result: String = this.displayReference?.text.toString()
+            if (result == R.string.nan_result.toString() || result == R.string.syntax_error.toString()) {
+                this.displayReference?.setText("")
             }
         }
     }

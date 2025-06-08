@@ -125,10 +125,15 @@
             android:textColor="@color/black"
             android:text="0"
             android:textSize="30sp" />
-        <!-- Botón vacío para simetría -->
-        <View
+
+        <Button
+            android:id="@+id/btnPoint"
             android:layout_width="80dp"
-            android:layout_height="80dp" />
+            android:layout_height="80dp"
+            android:background="@drawable/rounded_button"
+            android:textColor="@color/black"
+            android:text="."
+            android:textSize="30sp" />
         <!-- Cero en el centro -->
         <!-- Otro espacio vacío -->
         <View
