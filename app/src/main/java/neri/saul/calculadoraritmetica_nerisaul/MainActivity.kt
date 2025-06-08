@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
         btn0.setOnClickListener {
 
-            
+            this.preventCrashBySyntaxError()
 
             val sb: StringBuilder = StringBuilder()
             val currentDisplayText: String = displayTextContent.text.toString()
@@ -68,6 +68,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn1.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             val sb1: StringBuilder = StringBuilder()
             val currentDisplayText1: String = displayTextContent.text.toString()
 
@@ -78,6 +80,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn2.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             val sb2: StringBuilder = StringBuilder()
             val currentDisplayText2: String = displayTextContent.text.toString()
 
@@ -88,6 +92,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn3.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             val sb3: StringBuilder = StringBuilder()
             val currentDisplayText3: String = displayTextContent.text.toString()
 
@@ -98,6 +104,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn4.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             val sb4: StringBuilder = StringBuilder()
             val currentDisplayText4: String = displayTextContent.text.toString()
 
@@ -108,6 +116,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn5.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             val sb5: StringBuilder = StringBuilder()
             val currentDisplayText5: String = displayTextContent.text.toString()
 
@@ -118,6 +128,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn6.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             val sb6: StringBuilder = StringBuilder()
             val currentDisplayText6: String = displayTextContent.text.toString()
 
@@ -128,6 +140,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn7.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             val sb7: StringBuilder = StringBuilder()
             val currentDisplayText7: String = displayTextContent.text.toString()
 
@@ -138,6 +152,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn8.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             val sb8: StringBuilder = StringBuilder()
             val currentDisplayText8: String = displayTextContent.text.toString()
 
@@ -148,6 +164,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn9.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             val sb9: StringBuilder = StringBuilder()
             val currentDisplayText9: String = displayTextContent.text.toString()
 
@@ -159,6 +177,8 @@ class MainActivity : AppCompatActivity() {
 
         // listeners de operaciones aritmeticas
         btnPlusOperation.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             val sb: StringBuilder = StringBuilder()
             val currentDisplayText: String = displayTextContent.text.toString()
 
@@ -169,6 +189,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnMinusOperation.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             val sb: StringBuilder = StringBuilder()
             val currentDisplayText: String = displayTextContent.text.toString()
 
@@ -179,6 +201,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnMultiplicationOperation.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             val sb: StringBuilder = StringBuilder()
             val currentDisplayText: String = displayTextContent.text.toString()
 
@@ -189,6 +213,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnDivisionOperation.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             val sb: StringBuilder = StringBuilder()
             val currentDisplayText: String = displayTextContent.text.toString()
 
@@ -200,6 +226,8 @@ class MainActivity : AppCompatActivity() {
 
         // listener de los botones de utilidades
         btnDeleteOne.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             val currentDisplayText: String = displayTextContent.text.toString()
 
             if (currentDisplayText.length != 0) {
@@ -213,6 +241,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnGetResult.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             try {
                 val result: Double = this.calculadora.evaluar(displayTextContent.text.toString())
                 displayTextContent.setText(result.toString())
@@ -224,6 +254,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnPoint.setOnClickListener {
+            this.preventCrashBySyntaxError()
+
             val sb: StringBuilder = StringBuilder()
             val currentDisplayText: String = displayTextContent.text.toString()
 
@@ -235,10 +267,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun preventCrashBySyntaxError() {
+    private fun preventCrashBySyntaxError() {
         if (this.displayReference != null) {
             val result: String = this.displayReference?.text.toString()
-            if (result == R.string.nan_result.toString() || result == R.string.syntax_error.toString()) {
+
+            val validResult: Boolean = !(result == this.getString(R.string.nan_result)
+                    || result == this.getString(R.string.syntax_error)
+                    || result == "Infinity")
+
+            if (!validResult) {
                 this.displayReference?.setText("")
             }
         }
