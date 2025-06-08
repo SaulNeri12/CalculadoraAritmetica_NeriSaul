@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
 
     private var displayReference: TextView? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -245,6 +244,11 @@ class MainActivity : AppCompatActivity() {
         btnGetResult.setOnClickListener {
             this.preventCrashBySyntaxError()
 
+            val emptyText: Boolean = displayTextContent.text.toString().isEmpty() || displayTextContent.text.toString().isBlank()
+            if (emptyText) {
+                return@setOnClickListener
+            }
+
             try {
                 val result: Double = this.calculadora.evaluar(displayTextContent.text.toString())
                 displayTextContent.setText(result.toString())
@@ -252,6 +256,8 @@ class MainActivity : AppCompatActivity() {
                 displayTextContent.setText(R.string.nan_result)
             } catch (ex: NumberFormatException) {
                 displayTextContent.setText(R.string.syntax_error)
+            } catch (ex: IllegalArgumentException) {
+                displayTextContent.setText("")
             }
         }
 
@@ -273,9 +279,9 @@ class MainActivity : AppCompatActivity() {
         if (this.displayReference != null) {
             val result: String = this.displayReference?.text.toString()
 
-            val validResult: Boolean = !(result == this.getString(R.string.nan_result)
-                    || result == this.getString(R.string.syntax_error)
-                    || result == "Infinity")
+            val validResult: Boolean = !(this.getString(R.string.nan_result) in result
+                    || this.getString(R.string.syntax_error) in result
+                    || "Infinity" in result)
 
             if (!validResult) {
                 this.displayReference?.setText("")
