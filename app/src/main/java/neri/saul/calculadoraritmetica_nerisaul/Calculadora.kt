@@ -1,4 +1,10 @@
 package neri.saul.calculadoraritmetica_nerisaul
+
+/**
+ * @author Saul Neri (247498)
+ * Encapsula la logica de todo el procedimiento de limpia y evaluacion de las expresiones efectuadas
+ * por el usuario
+ */
 class Calculadora {
     var resultado: Double = 0.0
 
@@ -90,6 +96,8 @@ class Calculadora {
                 else -> i++
             }
         }
+
+        this.resultado = lista.first().toDouble()
 
         return lista.first().toDouble()
     }

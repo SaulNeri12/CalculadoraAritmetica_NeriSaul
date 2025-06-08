@@ -1,7 +1,6 @@
 package neri.saul.calculadoraritmetica_nerisaul
 
-import android.annotation.SuppressLint
-import android.icu.util.Currency
+
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -10,13 +9,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
+/**
+ * @author Saul Neri (247498)
+ */
 class MainActivity : AppCompatActivity() {
 
     private val calculadora: Calculadora = Calculadora()
 
     private var displayReference: TextView? = null
 
-    @SuppressLint("SetTextI18n")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
